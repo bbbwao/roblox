@@ -24,7 +24,7 @@ local library = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com
         end
     )
     w1:Button(
-        "Reach",
+        "Hitbox",
         function()
         
             wait()
