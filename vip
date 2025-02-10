@@ -15,10 +15,19 @@ if not allowedUsers[currentUserName] then
     return
 end
 local library = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/VNT-UNIVERSAL/MyCode/main/UILib"))()
-    local w1 = library:Window("CDVN-Hitbox")
+    local w1 = library:Window("CDVN-HealV2")
+    w1:Toggle(
+        "Auto Heal",
+        "BangGac",
+        false,
+        function(toggled)
+            AutoLayBangGac = toggled
+        end
+    )
     w1:Button(
         "Hitbox",
         function()
+        
             wait()
             game.StarterGui:SetCore("SendNotification", {
                 Title = "Cần Vũ Khí"; -- the title (ofc)
@@ -45,6 +54,82 @@ local library = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com
         sound.Parent = game:GetService("SoundService")
         sound:Play()
     end
+    w1:Button(
+        "Chìa Khóa",
+        function()
+            if game.Players.LocalPlayer.Character.Humanoid.SeatPart then
+                game.StarterGui:SetCore("SendNotification", {
+                    Title = "Key Unlock";
+                    Text = "Chờ tí thằng lz!";
+                    Duration = 5; 
+                })
+                print(game.Players.LocalPlayer.Character.Humanoid.SeatPart.Parent.EngineValue)
+                if game.Players.LocalPlayer.Character.Humanoid.SeatPart.Parent.EngineValue then
+                   game.Players.LocalPlayer.Character.Humanoid.SeatPart.Parent.EngineValue.Value = true
+                    Music()
+                    game.StarterGui:SetCore("SendNotification", {
+                    Title = "key Unlock";
+                    Text = "ngon rồi đó";
+                    Duration = 5; 
+                })
+                else
+                                game.StarterGui:SetCore("SendNotification", {
+                    Title = "key Unlock";
+                    Text = "bẻ cũng ngu nữa";
+                    Duration = 5; 
+                })
+                end
+                else
+                game.StarterGui:SetCore("SendNotification", {
+                    Title = "Key Unlock";
+                    Text = "Ngồi lên xe đi thằng lồn";
+                    Duration = 5; 
+                })
+            end
+        end
+    )
+    
+    function GetBackpack(Weapon) 
+        game:GetService("ReplicatedStorage").KnitPackages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.InventoryService.RE.updateInventory:FireServer("refresh")
+        game:GetService("ReplicatedStorage"):WaitForChild("KnitPackages")
+            :WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.7.0")
+            :WaitForChild("knit"):WaitForChild("Services")
+            :WaitForChild("InventoryService"):WaitForChild("RE")
+            :WaitForChild("updateInventory"):FireServer("eue", Weapon)
+    end
+    spawn(function()
+     while wait(.3) do
+       if AutoLayBangGac then
+           if not game.Players.LocalPlayer.Backpack:FindFirstChild('băng gạc') then
+           GetBackpack('băng gạc')
+           end
+       end
+     end
+    end)
+    w1:Label("Shop")
+    SoluongBangGac = 1
+    w1:Slider(
+        "SoLuong :",
+        "CpuntBangGac",
+        1,
+        99,
+        function(value)
+            SoluongBangGac = value
+        end,
+        1
+    )
+    w1:Button(
+        "Mua",
+        function()
+            if type(SoluongBangGac) ~= 'number' then
+                SoluongBangGac = 1
+            end
+            
+            for i = 1, SoluongBangGac do
+                game:GetService("ReplicatedStorage").KnitPackages._Index["sleitnick_knit@1.7.0"].knit.Services.ShopService.RE.buyItem:FireServer('băng gạc')
+            end
+        end
+    )
     w1:Button('Đóng Menu', function()
     for i,v in pairs(game.CoreGui:GetChildren()) do
         if v:FindFirstChild('Top') then
