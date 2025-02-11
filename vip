@@ -3,7 +3,7 @@ local allowedUsers = {
     ["phandung3614"] = true,
     ["demonkjq"] = true,
     ["ducztonii"] = true,
-    ["pYXmIna64670"] = true
+    ["pYXmIna64670"] = true,
     ["anhropdepOO"] = true
 }
 local currentUserName = game.Players.LocalPlayer.Name
