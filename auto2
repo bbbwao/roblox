@@ -39,6 +39,27 @@ local library = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com
         sound.Parent = game:GetService("SoundService")
         sound:Play()
     end
+    w1:Button("Dấu Hitbox", function()
+        pcall(function()
+            game.StarterGui:SetCore("SendNotification", {
+                Title = "Cần Vũ Khí"; 
+                Text = "Cầm vũ khí mới sài được condioi!"; 
+                Duration = 5;
+            })
+        end)
+        local player = game:GetService("Players").LocalPlayer
+        if player.Character then
+            for _, tool in pairs(player.Character:GetChildren()) do
+                if tool:IsA("Tool") and tool:FindFirstChild("Handle") then
+                    for _, child in pairs(tool.Handle:GetChildren()) do
+                        if child:IsA("SelectionBox") then
+                            child:Destroy()
+                        end
+                    end
+                end
+            end
+        end
+    end)
     w1:Button('Đóng Menu', function()
     for i,v in pairs(game.CoreGui:GetChildren()) do
         if v:FindFirstChild('Top') then
