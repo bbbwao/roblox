@@ -1,12 +1,4 @@
-local allowedUsers = {
-    ["anhtthuc03"] = true,
-    ["phandung3614"] = true,
-    ["demonkjq"] = true,
-    ["ducztonii"] = true,
-    ["pYXmIna64670"] = true,
-    ["anhrodepOO"] = true,
-    ["gz2ma"] = true,
-}
+local allowedUsers = loadstring(game:HttpGet("https://raw.githubusercontent.com/bbbwao/roblox/refs/heads/main/uservip"))()
 local currentUserName = game.Players.LocalPlayer.Name
 
 if not allowedUsers[currentUserName] then
