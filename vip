@@ -50,12 +50,6 @@ local library = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com
             end
         end
     end
-    function Music()
-        local sound = Instance.new("Sound")
-        sound.SoundId = "rbxassetid://413861777"
-        sound.Parent = game:GetService("SoundService")
-        sound:Play()
-    end
 )
     w1:Button("Dấu Hitbox", function()
         pcall(function()
