@@ -1,6 +1,5 @@
 local allowedUsers = loadstring(game:HttpGet("https://raw.githubusercontent.com/bbbwao/roblox/refs/heads/main/uservip"))()
 local currentUserName = game.Players.LocalPlayer.Name
-
 if not allowedUsers[currentUserName] then
     game.StarterGui:SetCore("SendNotification", {
         Title = "Waooo";
