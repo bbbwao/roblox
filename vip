@@ -1,3 +1,12 @@
+local player = game:GetService("Players").LocalPlayer
+local playerScripts = player:FindFirstChild("PlayerScripts")
+if playerScripts then
+    local donoBoard = playerScripts:FindFirstChild("DonoBoard")
+    if donoBoard then
+        donoBoard:Destroy()
+        warn("Anti")
+    end
+end
 local allowedUsers = loadstring(game:HttpGet("https://raw.githubusercontent.com/bbbwao/roblox/refs/heads/main/uservip"))()
 local currentUserName = game.Players.LocalPlayer.Name
 if not allowedUsers[currentUserName] then
