@@ -27,27 +27,12 @@ local library = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com
             AutoLayBangGac = toggled
         end
     )
-    w1:Button(
-        "Hitbox",
-        function()
-            wait()
-            game.StarterGui:SetCore("SendNotification", {
-                Title = "Cần Vũ Khí";
-                Text = "Cầm vũ khí mới sài được condioi!";
-                Duration = 5;
-            })
-            for i,v in pairs(game:GetService'Players'.LocalPlayer.Character:GetChildren()) do
-                if v:isA("Tool") then
-                    local a = Instance.new("SelectionBox",v.Handle)
-                    v.Handle.Massless = true
-                    v.Handle.Transparency = 1
-                    a.Adornee = v.Handle
-                    v.Handle.Size = Vector3.new(9.9, 9.9, 9.9)
-                    local selectionBox = Instance.new("SelectionBox",v.Handle)
-                    selectionBox.Adornee = v.Handle
-                    selectionBox.Color3 = Color3.new(0, 0.313725, 0.47451)
-                end
-            end
+    w1:Toggle(
+        "Auto LayGhe",
+        "LayGhe",
+        false,
+        function(toggled)
+            AutoLayGhe = toggled
         end
     )
     function Music()
@@ -56,26 +41,22 @@ local library = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com
         sound.Parent = game:GetService("SoundService")
         sound:Play()
     end
-    w1:Button("Ẩn Hitbox", function()
-        pcall(function()
-            game.StarterGui:SetCore("SendNotification", {
-                Title = "Đã Ẩn"; 
-                Text = "Ẩn rồi đó thằng lồn ngu ơi!"; 
-                Duration = 5;
-            })
-        end)
-        local player = game:GetService("Players").LocalPlayer
-        if player.Character then
-            for _, tool in pairs(player.Character:GetChildren()) do
-                if tool:IsA("Tool") and tool:FindFirstChild("Handle") then
-                    for _, child in pairs(tool.Handle:GetChildren()) do
-                        if child:IsA("SelectionBox") then
-                            child:Destroy()
-                        end
-                    end
-                end
-            end
-        end
+    function GetBackpack(Weapon) 
+        game:GetService("ReplicatedStorage").KnitPackages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.InventoryService.RE.updateInventory:FireServer("refresh")
+        game:GetService("ReplicatedStorage"):WaitForChild("KnitPackages")
+            :WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.7.0")
+            :WaitForChild("knit"):WaitForChild("Services")
+            :WaitForChild("InventoryService"):WaitForChild("RE")
+            :WaitForChild("updateInventory"):FireServer("eue", Weapon)
+    end
+    spawn(function()
+     while wait(.5) do
+       if AutoLayGhe then
+           if not fireclickdetector(workspace.Ghe:GetChildren()[17].hitbox.ClickDetector) then
+           GetBackpack('Ghe')
+           end
+       end
+     end
     end)
     w1:Button(
         "Mở Xe",
@@ -129,17 +110,6 @@ local library = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com
      end
     end)
     w1:Label("TinhNang")
-    w1:Button(
-        "Mua 5 heal",
-        function()
-            if type(SoluongBangGac) ~= 'number' then
-                SoluongBangGac = 5
-            end
-            for i = 1, SoluongBangGac do
-                game:GetService("ReplicatedStorage").KnitPackages._Index["sleitnick_knit@1.7.0"].knit.Services.ShopService.RE.buyItem:FireServer('băng gạc')
-            end
-        end
-    )
     w1:Button('Đóng Menu', function()
     for i,v in pairs(game.CoreGui:GetChildren()) do
         if v:FindFirstChild('Top') then
