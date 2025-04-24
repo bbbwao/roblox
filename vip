@@ -8,84 +8,108 @@ if not allowedUsers[currentUserName] then
     })
     return
 end
-  local player = game:GetService("Players").LocalPlayer
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+local dphub = Library:NewWindow("DPHUB-V5")
+local w1 = dphub:NewSection("???")
+w1:CreateButton("HITBOX?", function()
+    local player = game:GetService("Players").LocalPlayer
+    local runService = game:GetService("RunService")
 
-  -- Danh sách vũ khí và hitbox tương ứng (Tên cũ -> {Tên mới, Kích thước hitbox})
-  local weaponConfig = {
-      ["MaTau"] = {Name = "MT", Hitbox = Vector3.new(10, 10, 10)},
-      ["Kombat"] = {Name = "KB", Hitbox = Vector3.new(10, 10, 10)},
-      ["Dao cán vàng"] = {Name = "DCV", Hitbox = Vector3.new(10, 10, 10)},
-      ["PhongLon"] = {Name = "PL", Hitbox = Vector3.new(10, 10, 10)},
-      ["Như lai thần chưởng"] = {Name = "NLTC", Hitbox = Vector3.new(10, 10, 10)},
-      ["Bạch Long Katana"] = {Name = "BLK", Hitbox = Vector3.new(10, 10, 10)},
-      ["Giáng long chưởng"] = {Name = "GLC", Hitbox = Vector3.new(10, 10, 10)},
-      ["Song đao"] = {Name = "SD", Hitbox = Vector3.new(10, 10, 10)},
-      ["Bá Vương Kích"] = {Name = "BVK", Hitbox = Vector3.new(10, 10, 10)},
-      ["Huyền thiết kiếm"] = {Name = "HTK", Hitbox = Vector3.new(10, 10, 10)},
-      ["minhphuong"] = {Name = "MP", Hitbox = Vector3.new(10, 10, 10)},
-      ["Boxing"] = {Name = "BX", Hitbox = Vector3.new(10, 10, 10)},
-      ["Như lai thần chưởng (Legendary)"] = {Name = "NLTCV", Hitbox = Vector3.new(10, 10, 10)},
-      ["Hắc Long Katana"] = {Name = "HLK", Hitbox = Vector3.new(10, 10, 10)},
-      ["KatanaTet"] = {Name = "KTNT", Hitbox = Vector3.new(10, 10, 10)},
-      ["Thanh Long Quyền"] = {Name = "LTQ", Hitbox =Vector3.new(10, 10, 10)},
-      ["Trường thương"] = {Name = "TT", Hitbox =Vector3.new(10, 10, 10)},
-      ["Chổi Noel"] = {Name = "CN", Hitbox =Vector3.new(10, 10, 10)},
-      ["Gậy bóng chày"] = {Name = "GBC", Hitbox =Vector3.new(10, 10, 10)},
-      ["Long Đao"] = {Name = "LD", Hitbox =Vector3.new(10, 10, 10)},
-      ["Phong Lon (Hoàng Kim)"] = {Name = "PLH", Hitbox =Vector3.new(10, 10, 10)},
-      ["Hồng Ngọc Katana"] = {Name = "HN", Hitbox =Vector3.new(10, 10, 10)},
-      ["Vô ảnh cước"] = {Name = "VAC", Hitbox =Vector3.new(10, 10, 10)},
-      ["Võ đang kiếm pháp"] = {Name = "VDKP", Hitbox =Vector3.new(10, 10, 10)},
-      ["AK47"] = {Name = "AK", Hitbox =Vector3.new(10, 10, 10)},
-  }
-  
-  -- Hàm xử lý vũ khí
-  local function processWeapons()
-      if not player.Character then return end
-      
-      for _, tool in ipairs(player.Character:GetChildren()) do
-          if tool:IsA("Tool") then
-              local config = weaponConfig[tool.Name]
-              
-              if config then
-                  -- Đổi tên
-                  if tool.Name ~= config.Name then
-                      tool.Name = config.Name
-                      print("Đổi tên:", tool.Name, "->", config.Name)
-                  end
-                  
-                  -- Chỉnh hitbox
-                  local handle = tool:FindFirstChild("Handle")
-                  if handle and handle:IsA("BasePart") then
-                      handle.Size = config.Hitbox
-                      print("HACK ANH VIP KO EM", config.Name, "=", config.Hitbox)
-                  end
-              end
-          end
-      end
-  end
-  
-  -- Kết nối sự kiện
-  player.CharacterAdded:Connect(function(character)
-      task.wait(0.5) -- Đợi tool load
-      
-      -- Xử lý khi có tool mới
-      character.ChildAdded:Connect(function(child)
-          if child:IsA("Tool") and weaponConfig[child.Name] then
-              task.wait(0.1)
-              processWeapons()
-          end
-      end)
-      
-      processWeapons()
-  end)
-  
-  -- Chạy ngay lần đầu
-  if player.Character then
-      processWeapons()
-  end
-  
-  -- Kiểm tra định kỳ
-  while task.wait(3) do
-      processWeapons()
-  end
+    -- Weapon configuration with proper hitbox sizes
+    local weaponConfig = {
+        ["MaTau"] = {Name = "MT", Hitbox = Vector3.new(10, 10, 10)},
+        ["Kombat"] = {Name = "KB", Hitbox = Vector3.new(10, 10, 10)},
+        ["Dao cán vàng"] = {Name = "DCV", Hitbox = Vector3.new(10, 10, 10)},
+        ["PhongLon"] = {Name = "PL", Hitbox = Vector3.new(10, 10, 10)},
+        ["Như lai thần chưởng"] = {Name = "NLTC", Hitbox = Vector3.new(10, 10, 10)},
+        ["Bạch Long Katana"] = {Name = "BLK", Hitbox = Vector3.new(10, 10, 10)},
+        ["Giáng long chưởng"] = {Name = "GLC", Hitbox = Vector3.new(10, 10, 10)},
+        ["Song đao"] = {Name = "SD", Hitbox = Vector3.new(10, 10, 10)},
+        ["Bá Vương Kích"] = {Name = "BVK", Hitbox = Vector3.new(10, 10, 10)},
+        ["Huyền thiết kiếm"] = {Name = "HTK", Hitbox = Vector3.new(10, 10, 10)},
+        ["minhphuong"] = {Name = "MP", Hitbox = Vector3.new(10, 10, 10)},
+        ["Boxing"] = {Name = "BX", Hitbox = Vector3.new(10, 10, 10)},
+        ["Như lai thần chưởng (Legendary)"] = {Name = "NLTCV", Hitbox = Vector3.new(10, 10, 10)},
+        ["Hắc Long Katana"] = {Name = "HLK", Hitbox = Vector3.new(10, 10, 10)},
+        ["KatanaTet"] = {Name = "KTNT", Hitbox = Vector3.new(10, 10, 10)},
+        ["Thanh Long Quyền"] = {Name = "LTQ", Hitbox = Vector3.new(10, 10, 10)},
+        ["Trường thương"] = {Name = "TT", Hitbox = Vector3.new(10, 10, 10)},
+        ["Chổi Noel"] = {Name = "CN", Hitbox = Vector3.new(10, 10, 10)},
+        ["Gậy bóng chày"] = {Name = "GBC", Hitbox = Vector3.new(10, 10, 10)},
+        ["Long Đao"] = {Name = "LD", Hitbox = Vector3.new(10, 10, 10)},
+        ["Phong Lon (Hoàng Kim)"] = {Name = "PLH", Hitbox = Vector3.new(10, 10, 10)},
+        ["Hồng Ngọc Katana"] = {Name = "HN", Hitbox = Vector3.new(10, 10, 10)},
+        ["Vô ảnh cước"] = {Name = "VAC", Hitbox = Vector3.new(10, 10, 10)},
+        ["Võ đang kiếm pháp"] = {Name = "VDKP", Hitbox = Vector3.new(10, 10, 10)},
+        ["AK47"] = {Name = "AK", Hitbox = Vector3.new(10, 10, 10)},
+    }
+
+    -- Process weapons function with error handling
+    local function processWeapons()
+        if not player.Character then return end
+        
+        for _, tool in ipairs(player.Character:GetChildren()) do
+            if tool:IsA("Tool") then
+                local config = weaponConfig[tool.Name]
+                
+                if config then
+                    -- Change name
+                    if tool.Name ~= config.Name then
+                        tool.Name = config.Name
+                    end
+                    
+                    -- Modify hitbox
+                    local handle = tool:FindFirstChild("Handle")
+                    if handle and handle:IsA("BasePart") then
+                        local success, err = pcall(function()
+                            handle.Size = config.Hitbox
+                            if handle:FindFirstChildOfClass("SpecialMesh") then
+                                handle:FindFirstChildOfClass("SpecialMesh"):Destroy()
+                            end
+                        end)
+                        
+                        if not success then
+                            warn("Failed to modify hitbox for "..tool.Name..": "..err)
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    -- Character added event
+    player.CharacterAdded:Connect(function(character)
+        -- Wait for tools to load
+        task.wait(1)
+        
+        -- Process existing tools
+        processWeapons()
+        
+        -- Connect to new tools being added
+        character.ChildAdded:Connect(function(child)
+            if child:IsA("Tool") then
+                task.wait(0.1) -- Small delay to ensure tool is fully loaded
+                processWeapons()
+            end
+        end)
+    end)
+
+    -- Initial run if character already exists
+    if player.Character then
+        processWeapons()
+    end
+
+    -- Periodic check (less frequent than before)
+    local connection
+    connection = runService.Heartbeat:Connect(function()
+        task.wait(5) -- Check every 5 seconds instead of 3
+        processWeapons()
+    end)
+
+    -- Cleanup when button is pressed again or GUI is closed
+    return function()
+        if connection then
+            connection:Disconnect()
+        end
+    end
+end)
