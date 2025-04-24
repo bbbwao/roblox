@@ -1,12 +1,3 @@
-local player = game:GetService("Players").LocalPlayer
-local playerScripts = player:FindFirstChild("PlayerScripts")
-if playerScripts then
-    local donoBoard = playerScripts:FindFirstChild("DonoBoard")
-    if donoBoard then
-        donoBoard:Destroy()
-        warn("Anti")
-    end
-end
 local allowedUsers = loadstring(game:HttpGet("https://raw.githubusercontent.com/bbbwao/roblox/refs/heads/main/uservip"))()
 local currentUserName = game.Players.LocalPlayer.Name
 if not allowedUsers[currentUserName] then
@@ -17,104 +8,75 @@ if not allowedUsers[currentUserName] then
     })
     return
 end
-local library = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/VNT-UNIVERSAL/MyCode/main/UILib"))()
-    local w1 = library:Window("DPHub - V2")
-    w1:Toggle(
-        "Auto Heal",
-        "BangGac",
-        false,
-        function(toggled)
-            AutoLayBangGac = toggled
-        end
-    )
-    w1:Toggle(
-        "Auto LayGhe",
-        "LayGhe",
-        false,
-        function(toggled)
-            AutoLayGhe = toggled
-        end
-    )
-    function Music()
-        local sound = Instance.new("Sound")
-        sound.SoundId = "rbxassetid://413861777"
-        sound.Parent = game:GetService("SoundService")
-        sound:Play()
-    end
-    function GetBackpack(Weapon) 
-        game:GetService("ReplicatedStorage").KnitPackages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.InventoryService.RE.updateInventory:FireServer("refresh")
-        game:GetService("ReplicatedStorage"):WaitForChild("KnitPackages")
-            :WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.7.0")
-            :WaitForChild("knit"):WaitForChild("Services")
-            :WaitForChild("InventoryService"):WaitForChild("RE")
-            :WaitForChild("updateInventory"):FireServer("eue", Weapon)
-    end
-    spawn(function()
-     while wait(.5) do
-       if AutoLayGhe then
-           if not fireclickdetector(workspace.Ghe:GetChildren()[17].hitbox.ClickDetector) then
-           GetBackpack('Ghe')
-           end
-       end
-     end
-    end)
-    w1:Button(
-        "Mở Xe",
-        function()
-            if game.Players.LocalPlayer.Character.Humanoid.SeatPart then
-                game.StarterGui:SetCore("SendNotification", {
-                    Title = "Mở Xe";
-                    Text = "Chờ tí thằng lz!";
-                    Duration = 5; 
-                })
-                print(game.Players.LocalPlayer.Character.Humanoid.SeatPart.Parent.EngineValue)
-                if game.Players.LocalPlayer.Character.Humanoid.SeatPart.Parent.EngineValue then
-                   game.Players.LocalPlayer.Character.Humanoid.SeatPart.Parent.EngineValue.Value = true
-                    Music()
-                    game.StarterGui:SetCore("SendNotification", {
-                    Title = "Đã mở";
-                    Text = "ngon rồi đó";
-                    Duration = 5; 
-                })
-                else
-                game.StarterGui:SetCore("SendNotification", {
-                    Title = "Đã mở";
-                    Text = "ngon rồi đó";
-                    Duration = 5; 
-                })
-                end
-                else
-                game.StarterGui:SetCore("SendNotification", {
-                    Title = "Chưa Mở";
-                    Text = "Ngồi lên xe đi thằng lồn";
-                    Duration = 5; 
-                })
-            end
-        end
-    )
-    function GetBackpack(Weapon) 
-        game:GetService("ReplicatedStorage").KnitPackages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.InventoryService.RE.updateInventory:FireServer("refresh")
-        game:GetService("ReplicatedStorage"):WaitForChild("KnitPackages")
-            :WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.7.0")
-            :WaitForChild("knit"):WaitForChild("Services")
-            :WaitForChild("InventoryService"):WaitForChild("RE")
-            :WaitForChild("updateInventory"):FireServer("eue", Weapon)
-    end
-    spawn(function()
-     while wait(.3) do
-       if AutoLayBangGac then
-           if not game.Players.LocalPlayer.Backpack:FindFirstChild('băng gạc') then
-           GetBackpack('băng gạc')
-           end
-       end
-     end
-    end)
-    w1:Label("TinhNang")
-    w1:Button('Đóng Menu', function()
-    for i,v in pairs(game.CoreGui:GetChildren()) do
-        if v:FindFirstChild('Top') then
-            v:Destroy()    
-        end
-    end
-end) -- Text, Callback
-    w1:Label("Made By DPHub")
+  local player = game:GetService("Players").LocalPlayer
+  
+  -- Danh sách vũ khí và hitbox tương ứng (Tên cũ -> {Tên mới, Kích thước hitbox})
+  local weaponConfig = {
+      ["MaTau"] = {Name = "MT", Hitbox = Vector3.new(10, 10, 10)},
+      ["Kombat"] = {Name = "KB", Hitbox = Vector3.new(10, 10, 10)},
+      ["Dao cán vàng"] = {Name = "DCV", Hitbox = Vector3.new(10, 10, 10)},
+      ["PhongLon"] = {Name = "PL", Hitbox = Vector3.new(10, 10, 10)},
+      ["Như lai thần chưởng"] = {Name = "NLTC", Hitbox = Vector3.new(10, 10, 10)},
+      ["Bạch Long Katana"] = {Name = "BLK", Hitbox = Vector3.new(10, 10, 10)},
+      ["Giáng long chưởng"] = {Name = "GLC", Hitbox = Vector3.new(10, 10, 10)},
+      ["Song đao"] = {Name = "SD", Hitbox = Vector3.new(10, 10, 10)},
+      ["Bá Vương Kích"] = {Name = "BVK", Hitbox = Vector3.new(10, 10, 10)},
+      ["Huyền thiết kiếm"] = {Name = "HTK", Hitbox = Vector3.new(10, 10, 10)},
+      ["minhphuong"] = {Name = "MP", Hitbox = Vector3.new(10, 10, 10)},
+      ["Boxing"] = {Name = "BX", Hitbox = Vector3.new(10, 10, 10)},
+      ["Như lai thần chưởng (Legendary)"] = {Name = "NLTCV", Hitbox = Vector3.new(10, 10, 10)},
+      ["Hắc Long Katana"] = {Name = "HLK", Hitbox = Vector3.new(10, 10, 10)},
+      ["Katana Tết"] = {Name = "KTNT", Hitbox = Vector3.new(10, 10, 10)},
+      ["Thanh Long Quyền"] = {Name = "LTQ", Hitbox =Vector3.new(10, 10, 10)},
+  }
+  
+  -- Hàm xử lý vũ khí
+  local function processWeapons()
+      if not player.Character then return end
+      
+      for _, tool in ipairs(player.Character:GetChildren()) do
+          if tool:IsA("Tool") then
+              local config = weaponConfig[tool.Name]
+              
+              if config then
+                  -- Đổi tên
+                  if tool.Name ~= config.Name then
+                      tool.Name = config.Name
+                      print("Đổi tên:", tool.Name, "->", config.Name)
+                  end
+                  
+                  -- Chỉnh hitbox
+                  local handle = tool:FindFirstChild("Handle")
+                  if handle and handle:IsA("BasePart") then
+                      handle.Size = config.Hitbox
+                      print("HACK ANH VIP KO EM", config.Name, "=", config.Hitbox)
+                  end
+              end
+          end
+      end
+  end
+  
+  -- Kết nối sự kiện
+  player.CharacterAdded:Connect(function(character)
+      task.wait(0.5) -- Đợi tool load
+      
+      -- Xử lý khi có tool mới
+      character.ChildAdded:Connect(function(child)
+          if child:IsA("Tool") and weaponConfig[child.Name] then
+              task.wait(0.1)
+              processWeapons()
+          end
+      end)
+      
+      processWeapons()
+  end)
+  
+  -- Chạy ngay lần đầu
+  if player.Character then
+      processWeapons()
+  end
+  
+  -- Kiểm tra định kỳ
+  while task.wait(3) do
+      processWeapons()
+  end
