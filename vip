@@ -9,7 +9,7 @@ if not allowedUsers[currentUserName] then
     return
 end
   local player = game:GetService("Players").LocalPlayer
-  
+
   -- Danh sách vũ khí và hitbox tương ứng (Tên cũ -> {Tên mới, Kích thước hitbox})
   local weaponConfig = {
       ["MaTau"] = {Name = "MT", Hitbox = Vector3.new(10, 10, 10)},
@@ -26,8 +26,17 @@ end
       ["Boxing"] = {Name = "BX", Hitbox = Vector3.new(10, 10, 10)},
       ["Như lai thần chưởng (Legendary)"] = {Name = "NLTCV", Hitbox = Vector3.new(10, 10, 10)},
       ["Hắc Long Katana"] = {Name = "HLK", Hitbox = Vector3.new(10, 10, 10)},
-      ["Katana Tết"] = {Name = "KTNT", Hitbox = Vector3.new(10, 10, 10)},
+      ["KatanaTet"] = {Name = "KTNT", Hitbox = Vector3.new(10, 10, 10)},
       ["Thanh Long Quyền"] = {Name = "LTQ", Hitbox =Vector3.new(10, 10, 10)},
+      ["Trường thương"] = {Name = "TT", Hitbox =Vector3.new(10, 10, 10)},
+      ["Chổi Noel"] = {Name = "CN", Hitbox =Vector3.new(10, 10, 10)},
+      ["Gậy bóng chày"] = {Name = "GBC", Hitbox =Vector3.new(10, 10, 10)},
+      ["Long Đao"] = {Name = "LD", Hitbox =Vector3.new(10, 10, 10)},
+      ["Phong Lon (Hoàng Kim)"] = {Name = "PLH", Hitbox =Vector3.new(10, 10, 10)},
+      ["Hồng Ngọc Katana"] = {Name = "HN", Hitbox =Vector3.new(10, 10, 10)},
+      ["Vô ảnh cước"] = {Name = "VAC", Hitbox =Vector3.new(10, 10, 10)},
+      ["Võ đang kiếm pháp"] = {Name = "VDKP", Hitbox =Vector3.new(10, 10, 10)},
+      ["AK47"] = {Name = "AK", Hitbox =Vector3.new(10, 10, 10)},
   }
   
   -- Hàm xử lý vũ khí
