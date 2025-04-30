@@ -91,13 +91,7 @@ CheckKeyCorner.CornerRadius = UDim.new(0, 5)
 CheckKeyCorner.Parent = CheckKey
 
 local function validateKey(key)
-    local validKeys = {
-        "1",
-        "2",
-        "3",
-        "4",
-        "5"
-    }
+    local validKeys = loadstring(game:HttpGet("https://raw.githubusercontent.com/bbbwao/roblox/refs/heads/main/key.lua"))()
     
     for _, validKey in ipairs(validKeys) do
         if key == validKey then
