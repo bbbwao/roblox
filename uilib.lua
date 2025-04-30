@@ -111,7 +111,7 @@ CheckKey.MouseButton1Click:Connect(function()
         ScreenGui:Destroy()
 
 -- Put Your Script Here
-loadstring(game:HttpGet(''))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bbbwao/roblox/refs/heads/main/vip"))()
 
     else
         TextBox.PlaceholderText = "Sai Key!"
