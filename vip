@@ -92,7 +92,7 @@ CheckKeyCorner.Parent = CheckKey
 
 local function validateKey(key)
     local validKeys = {
-"",
+"DIAPHUHUB",
     }
     
     for _, validKey in ipairs(validKeys) do
